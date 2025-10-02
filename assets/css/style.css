@@ -5,6 +5,18 @@
   --dark: #e0e0e0;
   --card-bg: #2a2a2a;
 }
+
+/* ===== フォント設定 ===== */
+@font-face {
+  font-family: 'MakinasSquare';
+  src: url('../font/Makinas-4-Square.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'SourceHanSansJP';
+  src: url('../font/font/SourceHanSansJP-Medium.woff') format('woff');
+}
+
 /* ===== 基本設定 ===== */
 html, body {
   height: 100%;
@@ -12,7 +24,7 @@ html, body {
   padding: 0;
 }
 body {
-  font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Noto Sans JP", Helvetica, Arial;
+  font-family: 'SourceHanSansJP', system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Noto Sans JP", Helvetica, Arial, sans-serif;
   margin: 0;
   padding: 0;
   background: var(--bg);
@@ -20,10 +32,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.4;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* 画面いっぱいに高さを確保 */
 }
+
 /* ===== ヘッダー ===== */
 header, .header {
   position: fixed;
@@ -127,26 +137,114 @@ header, .header {
 .nav-overlay__link:hover {
   color: #4a90e2;
 }
-/* ===== main ===== */
+
+/* ===== ヒーローセクション ===== */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  min-height: 100vh; /* 画面いっぱいに高さを確保 */
+}
+.hero-logo {
+  text-align: center;
+}
+.hero-logo img {
+  max-width: 300px;
+  width: 80%;
+  height: auto;
+}
+/* スクロールインジケーター */
+.scroll-indicator {
+  position: absolute;
+  bottom: 60px;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.scroll-text {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+.scroll-line {
+  width: 1px;
+  height: 80px;
+  background: linear-gradient(to bottom, #4a90e2, transparent);
+  animation: scrollAnimation 2s ease-in-out infinite;
+}
+@keyframes scrollAnimation {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(10px);
+  }
+}
+
+
+/* main */
 main {
-  flex: 1; /* main が残りの高さを全部使う */
-  padding: 18px;
-  padding-top: 70px; /* ヘッダー分の余白 */
+  flex: 1;
+  padding: 40px 24px; /* 内側余白: PC時 40px, モバイル時 24px */
+  padding-top: 100px; /* ヘッダー分 + ゆとり */
+  min-height: 100vh;
 }
+
+/* ===== 見出し ===== */
 h1 {
-  font-size: 20px;
-  margin: 0 0 12px 0;
-  color: var(--dark);
+  font-family: 'MakinasSquare', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 48px 0 24px 0; /* 上大きめ、下24pxで段落とリズムを統一 */
+  color: #ffffff;
+  padding-left: 16px;
+  border-left: 6px solid #4a90e2;
+  line-height: 1.4;
+  
 }
+
+h2 {
+  font-family: 'MakinasSquare', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin: 40px 0 24px 0; /* h1と同じリズム */
+  color: #ffffff;
+  line-height: 1.4;
+}
+
+/* ===== 本文 ===== */
+p {
+  font-family: 'SourceHanSansJP', sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+  margin: 0 0 16px 0;  /* 段落の余白を統一 */
+  color: #cccccc;
+  max-width: 720px; /* 横幅を制限すると読みやすい */
+}
+
+
+
+
 /* ===== ボタン (LINE001スタイル適用 - ダークテーマ) ===== */
 .btn {
   position: relative;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin: 10px auto;
+  margin: 40px auto;
   max-width: 200px;
-  padding: 10px 25px;
+  padding: 12px 28px; /* ボタン内余白も8px基準に */
   color: #e0e0e0;
   text-decoration: none;
   font-weight: 600;
@@ -189,9 +287,4 @@ footer {
   font-size: 12px;
   color: #999;
   background: #0a0a0a;
-  /* 余計な margin は削除 */
-}
-/* ===== スマホ前提レスポンシブ ===== */
-@media (min-width: 420px) {
-  main { padding: 22px; }
 }
