@@ -14,7 +14,12 @@
 
 @font-face {
   font-family: 'SourceHanSansJP';
-  src: url('../font/font/SourceHanSansJP-Medium.woff') format('woff');
+  src: url('../font/SourceHanSansJP-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'SmartFontUI';
+  src: url('../font/SmartFontUI.woff') format('woff');
 }
 
 @font-face {
@@ -29,7 +34,8 @@ html, body {
   padding: 0;
 }
 body {
-  font-family: 'SourceHanSansJP', system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Noto Sans JP", Helvetica, Arial, sans-serif;
+  font-family: 'SmartFontUI', system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Noto Sans JP", Helvetica, Arial, sans-serif;
+  margin: 0;
   margin: 0;
   padding: 0;
   background: var(--bg);
@@ -288,7 +294,7 @@ h2 {
 
 /* ===== 本文 ===== */
 p {
-  font-family: 'SourceHanSansJP', sans-serif;
+  font-family: 'SmartFontUI', sans-serif;
   font-size: 15px;
   line-height: 1.8;
   margin: 0 0 16px 0;  /* 段落の余白を統一 */
