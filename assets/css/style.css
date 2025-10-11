@@ -760,7 +760,7 @@ body::after {
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 900px;
+  max-width: 450px;
   height: 200%;
   background: 
     radial-gradient(
