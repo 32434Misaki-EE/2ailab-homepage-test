@@ -209,25 +209,7 @@ header, .header {
   }
 }
 
-/* ===== ヒーローセクション ===== */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-    background: transparent;  /* ← 透明に変更 *
-  min-height: 100vh; /* 画面いっぱいに高さを確保 */
-}
-.hero-logo {
-  text-align: center;
-}
-.hero-logo img {
-  max-width: 300px;
-  width: 80%;
-  height: auto;
-}
+
 /* スクロールインジケーター */
 .scroll-indicator {
   position: absolute;
@@ -307,85 +289,8 @@ p {
 
 
 
-/* ===== ボタン (LINE001スタイル適用 - ダークテーマ) ===== */
-.btn {
-  position: relative;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin: 40px auto;
-  max-width: 200px;
-  padding: 12px 28px; /* ボタン内余白も8px基準に */
-  color: #e0e0e0;
-  text-decoration: none;
-  font-weight: 600;
-  background: transparent;
-  border-radius: 0;
-  transition: 0.3s ease-in-out;
-}
-.btn:before {
-  position: absolute;
-  bottom: 0px;
-  left: 50%;
-  content: '';
-  width: 100%;
-  height: 2px;
-  background: rgba(255,255,255,.2);
-  transform: translateX(-50%);
-}
-.btn:after {
-  position: absolute;
-  bottom: 0px;
-  left: 0;
-  content: '';
-  width: 100%;
-  height: 2px;
-  background: #4a90e2;
-  transform: scale(0, 1);
-  transform-origin: left top;
-  transition: transform .3s;
-}
-.btn:hover {
-  opacity: 0.7;
-}
-.btn:hover:after {
-  transform: scale(1, 1);
-}
 
-/* ===== Googleマップ（修正版） ===== */
-.map-container {
-  width: 100%;
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 0 16px;
-  box-sizing: border-box; /* 追加 */
-}
 
-.map-container iframe {
-  width: 100%;
-  max-width: 100%; /* 追加 */
-  height: 400px;
-  border: 0;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  display: block; /* 追加 */
-}
-
-@media (min-width: 420px) {
-  .map-container {
-    padding: 0 8px;
-  }
-  
-  .map-container iframe {
-    height: 450px;
-  }
-}
-
-@media (min-width: 768px) {
-  .map-container iframe {
-    height: 500px;
-  }
-}
 
 /* footer */
 footer {
@@ -416,116 +321,6 @@ footer {
 
 
 
-/* ===== クレジットページ ===== */
-.credit-section {
-  margin: 72px 0;
-}
-
-.credit-section h2 {
-  font-size: 22px;
-  font-weight: 700;
-  margin: 0 0 32px 0;
-  color: #ffffff;
-  letter-spacing: 0.05em;
-}
-
-.credit-list {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.credit-item {
-  position: relative;
-  padding: 20px 24px 20px 18px;
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(74, 144, 226, 0.25);
-  border-left: 2px solid #4a90e2;
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
-
-.credit-item::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 7px;
-  height: 7px;
-  background: #4a90e2;
-  clip-path: polygon(100% 0, 100% 100%, 0 100%);
-}
-
-.credit-content {
-  width: 100%;
-  position: relative;
-  z-index: 1;
-}
-
-.credit-title {
-  font-family: 'Makinas', sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  margin: 0 0 8px 0;
-  color: #ffffff;
-  letter-spacing: 0.08em;
-  line-height: 1.4;
-  text-shadow: 0 0 10px rgba(74, 144, 226, 0.3);
-}
-
-.credit-author {
-  font-size: 12px;
-  margin: 0 0 10px 0;
-  color: #4a90e2;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.credit-description {
-  font-size: 13px;
-  margin: 0 0 12px 0;
-  color: #bbb;
-  line-height: 1.6;
-  font-weight: 300;
-}
-
-.credit-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 12px;
-  color: #4a90e2;
-  text-decoration: none;
-  font-weight: 500;
-  padding: 8px 14px 8px 0;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  border: 1px solid rgba(74, 144, 226, 0.3);
-  border-width: 0 0 1px 0;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.credit-link::before {
-  content: '→';
-  font-size: 13px;
-  transition: transform 0.3s ease;
-}
-
-.credit-link:active {
-  color: #6bb0ff;
-}
-
-.credit-link:active::before {
-  transform: translateX(4px);
-}
 
 
 
@@ -644,90 +439,6 @@ footer {
 }
 
 
-/* ===== SNSリンク ===== */
-.social-links {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin: 40px 0;
-  align-items: center;
-}
-
-.social-btn {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin: 0 auto;
-  max-width: 240px;
-  width: 100%;
-  padding: 12px 28px;
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 14px;
-  border: none;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-}
-
-.line-btn {
-  background: #06C755;
-  box-shadow: 0 2px 8px rgba(6, 199, 85, 0.3);
-}
-
-.instagram-btn {
-  background: linear-gradient(135deg, #833AB4 0%, #E1306C 50%, #FD1D1D 100%);
-  box-shadow: 0 2px 8px rgba(225, 48, 108, 0.3);
-}
-
-.social-btn svg {
-  flex-shrink: 0;
-}
-
-.social-btn:active {
-  transform: scale(0.97);
-}
-
-.line-btn:active {
-  box-shadow: 0 1px 4px rgba(6, 199, 85, 0.3);
-}
-
-.instagram-btn:active {
-  box-shadow: 0 1px 4px rgba(225, 48, 108, 0.3);
-}
-
-@media (min-width: 420px) {
-  .social-links {
-    gap: 20px;
-  }
-  
-  .social-btn {
-    font-size: 15px;
-    padding: 13px 32px;
-  }
-}
-
-@media (min-width: 768px) {
-  .line-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(6, 199, 85, 0.5);
-    background: #05b84d;
-  }
-  
-  .instagram-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(225, 48, 108, 0.5);
-  }
-  
-  .social-btn:active {
-    transform: translateY(0);
-  }
-}
-
-
-
 
 
 
@@ -800,32 +511,6 @@ body::after {
   }
 }
 
-/* ヒーローセクションに微細な光のエフェクトを追加 */
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(74, 144, 226, 0.05) 0%,
-    transparent 60%
-  );
-  pointer-events: none;
-  z-index: 1;
-}
-
-.hero-logo {
-  position: relative;
-  z-index: 2;
-}
-
-.scroll-indicator {
-  position: absolute;
-  z-index: 2;
-}
 
 
 
@@ -907,6 +592,8 @@ body::after {
     transform: none;
   }
 }
+
+
 
 
 
