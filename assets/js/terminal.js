@@ -80,31 +80,41 @@ if (terminal) {
   { type: 'normal', text: 'error: niAI communication link unstable', outputClass: 'terminal-error' }
   ];
 
-  let lineIndex = -1;
+   let lineIndex = -1;
   let currentLine = null;
   let charIndex = 0;
   let isTyping = false;
   let currentCommandLines = [];
   let currentCommandLineIndex = 0;
 
+  const MAX_LINES = 80; // ← 表示行数の上限
   const lineHeight = parseFloat(getComputedStyle(terminal).lineHeight) || 19;
 
+  // --- 活動検出（放置時軽減） ---
+  let lastActivity = Date.now();
+  document.addEventListener('mousemove', () => lastActivity = Date.now());
+  document.addEventListener('keydown', () => lastActivity = Date.now());
+  function isIdle() {
+    return (Date.now() - lastActivity) > 15000; // 15秒操作なしで低速化
+  }
+
+  // --- 新しい行を作成 ---
   function createNewLine(className = 'terminal-line') {
     const line = document.createElement('div');
     line.className = className;
 
-    // 既存の行を下に押し下げ
-    Array.from(terminal.children).forEach(child => {
-      const currentY = parseFloat(child.style.transform.replace('translateY(', '') || 0);
-      child.style.transform = `translateY(${currentY + lineHeight}px)`;
-    });
-
-    // 新しい行は上に追加
+    // 一番上に新しい行を追加
     terminal.prepend(line);
+
+    // 行が多すぎたら下の行を削除
+    while (terminal.children.length > MAX_LINES) {
+      terminal.removeChild(terminal.lastChild);
+    }
 
     return line;
   }
 
+  // --- コマンドのタイプ開始 ---
   function typeCommand() {
     lineIndex = (lineIndex + 1) % commands.length;
     const cmdObj = commands[lineIndex];
@@ -116,17 +126,18 @@ if (terminal) {
     }
   }
 
+  // --- 通常コマンドのタイプ処理 ---
   function typeNormal(text, outputClass) {
     isTyping = true;
     currentCommandLines = text.split('\n');
     currentCommandLineIndex = 0;
     charIndex = 0;
-    currentLine = createNewLine();
-    currentLine.classList.add(outputClass);
+    currentLine = createNewLine(outputClass);
 
     function typeLine() {
       const lineText = currentCommandLines[currentCommandLineIndex];
 
+      // タイプミス演出（5%）
       if (Math.random() < 0.05 && charIndex > 0) {
         currentLine.textContent = currentLine.textContent.slice(0, -1);
         setTimeout(typeLine, 50);
@@ -136,32 +147,32 @@ if (terminal) {
       if (charIndex < lineText.length) {
         currentLine.textContent += lineText[charIndex];
         charIndex++;
-        setTimeout(typeLine, Math.random() * 20 + 2);
+        const delay = isIdle() ? 100 + Math.random() * 100 : Math.random() * 20 + 2;
+        setTimeout(typeLine, delay);
       } else if (currentCommandLineIndex < currentCommandLines.length - 1) {
         currentCommandLineIndex++;
         charIndex = 0;
-        currentLine = createNewLine();
-        currentLine.classList.add(outputClass);
+        currentLine = createNewLine(outputClass);
         setTimeout(typeLine, 50);
       } else {
         isTyping = false;
-        setTimeout(typeCommand, Math.random() * 500 + 100);
+        const nextDelay = isIdle() ? 1500 : Math.random() * 500 + 50;
+        setTimeout(typeCommand, nextDelay);
       }
     }
 
     typeLine();
   }
 
+  // --- プログレスバー ---
   function typeProgressBar(command, duration = 2000, steps = 20) {
-    const line = createNewLine();
+    const line = createNewLine('terminal-progress');
     line.textContent = '> ' + command;
-    line.classList.add('terminal-progress');
 
-    const progressLine = createNewLine();
-    progressLine.classList.add('terminal-progress');
+    const progressLine = createNewLine('terminal-progress');
     let step = 0;
-
     const barLength = 20;
+
     const designs = [
       (s, total) => {
         const filled = Math.round((s / total) * barLength);
@@ -194,7 +205,8 @@ if (terminal) {
       progressLine.textContent = designFunc(step, steps);
 
       if (step < steps) {
-        setTimeout(stepProgress, (duration / steps)*0.8);
+        const delay = isIdle() ? (duration / steps) * 2 : (duration / steps);
+        setTimeout(stepProgress, delay);
       } else {
         setTimeout(typeCommand, 500);
       }
