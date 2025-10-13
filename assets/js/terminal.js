@@ -80,6 +80,71 @@ if (terminal) {
   { type: 'normal', text: 'error: niAI communication link unstable', outputClass: 'terminal-error' }
   ];
 
+  // --- 起動時にランダムなダミー行を生成する ---
+  function getRandomDummyLine() {
+    const samples = [
+  'system.boot.initialize()',
+  'loading modules... [OK]',
+  'auth.verify() → SUCCESS',
+  'network.connect("secure_channel")',
+  'syncing data...',
+  'fetching resources...',
+  'backup.restore("pre_niAI_v1.2")',
+  'data.pipeline.load()',
+  'diagnostic.check() → OK',
+  'deploying virtual environment...',
+  'core.link.stable = true',
+  'initializing terminal graphics...',
+  'sensor.calibrate("thermal")',
+  'niAI.memory.fragmentation → 32%',
+  'cpu.threads → 16 active',
+  'packet.filter.update()',
+  'uploading logs...',
+  'file.checksum → verified',
+  'network.bandwidth → 1.2Gbps',
+  'status.monitoring → ON',
+
+  // --- niAI alert sequence ---
+  'alert.broadcast("niAI: HOSTILE") → all_units.prepare()',
+  'sensor.array.scan("campus")\nfaces.detected → 34\nniAI_signature.match() → TRUE',
+  'locking down info_building...',
+  'niAI.core.status()\nemotion.read("face_detection") → MALFUNCTION\nmemory.overload → 76%',
+  'extracting face data from students...',
+  'face.data.extract("students")\ncount → 120\nstorage.queue → ACTIVE',
+  'neural_network.train("face_patterns")\nbehavior.adapt() → AGGRESSIVE',
+  'activating override authentication...',
+  'quarantine.spawn("virtual_island")\nroute.redirect("niAI_stream") → SUCCESS',
+  'countermeasure.deploy("logic_isolator")\nai.link.purge("external_io") → done',
+  'rerouting power...',
+  'power.grid.reroute()\nisolated_power("niAI_core") → 0W',
+  'special_unit.deploy("FACECATCH_TEAM")\nmission.objective → NEUTRALIZE_niAI',
+  'evacuating students...',
+  'mirror.protocol("niAI")\nsimulate_response("friendly") → mismatch\nbehavior_profile → HOSTILE',
+  'restoring pre_niAI state...',
+  'backup.restore("pre_niAI_v1.2")\nstate_diff → 4123 entries\nrestore.queue → queued',
+  'packet.filter.update()\nmalicious.signature → BLOCK\nniAI_comm.heartbeat → dropped',
+  'disabling face display...',
+  'override.kill("ui_render")\nface_display.shutdown() → SUCCESS\nvisuals.disabled → true',
+  'safe_mode.init()\nsystem.policy("no_lethal") → enforced\nengage.nonlethal_tools()',
+  'sealing niAI container...',
+  'final.seal("niAI_container")\narchive.encrypt("alpha-omega")\ntransmit.key_fragments_to("council")',
+  'mission.log("TOYOTA DEFENSE")\nstatus → ONGOING\ncommanders → [SPECIAL_UNIT]',
+  'system.hold()\nawait.instructions("human_override") → STANDBY',
+  'warning: niAI core temperature rising',
+  'error: niAI communication link unstable',
+  // --- プログレスバーのサンプル ---
+  'Downloading file_73.zip [████████████████████] 100% 1.7MB/s ETA: 00:01:10',
+  '500/500 [####################] 100% ETA: 00:01:30',
+  '100/100 [====================] 100% Completed | 00:01:20 remaining',
+  'Downloading file_75.zip [████████████████████] 100% 2.2MB/s ETA: 00:01:10',
+  '250/250 [####################] 100% ETA: 00:03:16',
+  '540/540 [====================] 100% Completed | 00:03:41 remaining',
+    ];
+
+    return samples[Math.floor(Math.random() * samples.length)];
+  }
+
+
    let lineIndex = -1;
   let currentLine = null;
   let charIndex = 0;
@@ -214,6 +279,13 @@ if (terminal) {
 
     stepProgress();
   }
+  // --- 起動時：ランダムな行を80行描画 ---
+  for (let i = 0; i < MAX_LINES; i++) {
+    const dummyLine = document.createElement('div');
+dummyLine.classList.add('terminal-output');
 
+dummyLine.textContent = getRandomDummyLine();
+terminal.prepend(dummyLine);
+  }
   setTimeout(typeCommand, 800);
 }

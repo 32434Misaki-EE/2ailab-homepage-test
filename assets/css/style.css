@@ -584,12 +584,14 @@ body::before {
   max-width: 450px;
   height: 100%;
   background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
   background-size: 40px 40px;
   background-position: 0 var(--scroll-y);
   pointer-events: none;
   z-index: -1;
+    /* グリッドをぼかす */
+  filter: blur(0.6px); /* 値を大きくするとさらにぼかせる */
   
   /* 微かなグロー効果 */
   box-shadow: inset 0 0 100px rgba(74, 144, 226, 0.02);
@@ -695,11 +697,6 @@ body::after {
   overflow: hidden;
 }
 
-/* コマンド入力行の前置き */
-.terminal-line::before {
-  content: '> ';
-  color: rgba(74, 144, 226, 0.25);
-}
 
 /* タイピング用カーソル */
 .terminal-cursor {
