@@ -6,37 +6,37 @@
   --card-bg: #2a2a2a;
 }
 
-
-
 /* ===== フォント設定 ===== */
 @font-face {
-  font-family: 'MakinasSquare';
-  src: url('../font/Makinas-4-Square.woff') format('woff');
+  font-family: "MakinasSquare";
+  src: url("../font/Makinas-4-Square.woff") format("woff");
 }
 
 @font-face {
-  font-family: 'SourceHanSansJP';
-  src: url('../font/SourceHanSansJP-Medium.woff') format('woff');
+  font-family: "SourceHanSansJP";
+  src: url("../font/SourceHanSansJP-Medium.woff") format("woff");
 }
 
 @font-face {
-  font-family: 'SmartFontUI';
-  src: url('../font/SmartFontUI.woff') format('woff');
+  font-family: "SmartFontUI";
+  src: url("../font/SmartFontUI.woff") format("woff");
 }
 
 @font-face {
-  font-family: 'Makinas';
-  src: url('../font/Makinas-4-Square.woff') format('woff');
+  font-family: "Makinas";
+  src: url("../font/Makinas-4-Square.woff") format("woff");
 }
 
 /* ===== 基本設定 ===== */
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 body {
-  font-family: 'SmartFontUI', system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Noto Sans JP", Helvetica, Arial, sans-serif;
+  font-family: "SmartFontUI", system-ui, -apple-system,
+    "Hiragino Kaku Gothic ProN", "Noto Sans JP", Helvetica, Arial, sans-serif;
   margin: 0;
   margin: 0;
   padding: 0;
@@ -48,7 +48,8 @@ body {
 }
 
 /* ===== ヘッダー ===== */
-header, .header {
+header,
+.header {
   position: fixed;
   top: 0;
   left: 0;
@@ -85,9 +86,15 @@ header, .header {
   background-color: #fff;
   transition: all 0.4s;
 }
-.hamburger-overlay__line:nth-of-type(1) { top: 8px; }
-.hamburger-overlay__line:nth-of-type(2) { top: 17px; }
-.hamburger-overlay__line:nth-of-type(3) { top: 26px; }
+.hamburger-overlay__line:nth-of-type(1) {
+  top: 8px;
+}
+.hamburger-overlay__line:nth-of-type(2) {
+  top: 17px;
+}
+.hamburger-overlay__line:nth-of-type(3) {
+  top: 26px;
+}
 .hamburger-overlay.active .hamburger-overlay__line:nth-of-type(1) {
   transform: translateY(9px) rotate(-45deg);
 }
@@ -98,9 +105,6 @@ header, .header {
   transform: translateY(-9px) rotate(45deg);
 }
 
-
-
-
 /* ===== メニューオーバーレイ ===== */
 .nav-overlay {
   position: fixed;
@@ -109,14 +113,13 @@ header, .header {
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.6); /* 半透明の黒に軽めに */
-  backdrop-filter: blur(10px);          /* 背景をぼかす */
-  -webkit-backdrop-filter: blur(10px);  /* Safari対応 */
+  backdrop-filter: blur(10px); /* 背景をぼかす */
+  -webkit-backdrop-filter: blur(10px); /* Safari対応 */
   visibility: hidden;
   opacity: 0;
-  transition: all .4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 900;
 }
-
 
 .nav-overlay.active {
   visibility: visible;
@@ -138,38 +141,48 @@ header, .header {
 .nav-overlay__item {
   opacity: 0;
   transform: translateY(30px);
-  transition: all .5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   margin: 6px 0;
 }
-
 
 .nav-overlay.active .nav-overlay__item {
   opacity: 1;
   transform: translateY(0);
 }
-.nav-overlay.active .nav-overlay__item:nth-child(1) { transition-delay: 0.1s; }
-.nav-overlay.active .nav-overlay__item:nth-child(2) { transition-delay: 0.2s; }
-.nav-overlay.active .nav-overlay__item:nth-child(3) { transition-delay: 0.3s; }
-.nav-overlay.active .nav-overlay__item:nth-child(4) { transition-delay: 0.4s; }
-.nav-overlay.active .nav-overlay__item:nth-child(5) { transition-delay: 0.5s; }
-.nav-overlay.active .nav-overlay__item:nth-child(6) { transition-delay: 0.6s; }
+.nav-overlay.active .nav-overlay__item:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.nav-overlay.active .nav-overlay__item:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.nav-overlay.active .nav-overlay__item:nth-child(3) {
+  transition-delay: 0.3s;
+}
+.nav-overlay.active .nav-overlay__item:nth-child(4) {
+  transition-delay: 0.4s;
+}
+.nav-overlay.active .nav-overlay__item:nth-child(5) {
+  transition-delay: 0.5s;
+}
+.nav-overlay.active .nav-overlay__item:nth-child(6) {
+  transition-delay: 0.6s;
+}
 .nav-overlay__link {
   display: inline-block;
   padding: 14px 40px;
   color: #fff;
-  font-family: 'Makinas', system-ui, sans-serif;
+  font-family: "Makinas", system-ui, sans-serif;
   font-size: 20px;
   text-decoration: none;
   letter-spacing: 0.15em;
   position: relative;
   transition: color 0.3s ease;
-    /* ネオングロー追加 */
+  /* ネオングロー追加 */
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
-
 .nav-overlay__link::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 10px;
   left: 50%;
@@ -178,10 +191,8 @@ header, .header {
   height: 2px;
   background: #4a90e2;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    /* ネオングロー追加 */
-  box-shadow: 
-    0 0 8px #4a90e2,
-    0 0 15px #4a90e2,
+  /* ネオングロー追加 */
+  box-shadow: 0 0 8px #4a90e2, 0 0 15px #4a90e2,
     0 0 25px rgba(74, 144, 226, 0.2);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -191,10 +202,6 @@ header, .header {
 .nav-overlay__link:active::after {
   transform: translateX(-50%) scaleX(1);
 }
-
-
-
-
 
 @media (min-width: 420px) {
   .nav-overlay__item {
@@ -230,7 +237,6 @@ header, .header {
   }
 }
 
-
 /* スクロールインジケーター */
 .scroll-indicator {
   position: absolute;
@@ -253,15 +259,14 @@ header, .header {
   width: 1px;
   height: 80px;
   background: linear-gradient(to bottom, #4a90e2, transparent);
-  
+
   /* ネオングロー追加 */
-  box-shadow: 
-    0 0 20px #4a90e2,
-    0 0 40px #4a90e2;
+  box-shadow: 0 0 20px #4a90e2, 0 0 40px #4a90e2;
   animation: scrollAnimation 2s ease-in-out infinite;
 }
 @keyframes scrollAnimation {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.3;
     transform: translateY(0);
   }
@@ -270,7 +275,6 @@ header, .header {
     transform: translateY(10px);
   }
 }
-
 
 /* main */
 main {
@@ -281,7 +285,7 @@ main {
 }
 
 h1 {
-  font-family: 'MakinasSquare', sans-serif;
+  font-family: "MakinasSquare", sans-serif;
   font-size: 32px;
   font-weight: 700;
   margin: 48px 0 24px 0;
@@ -289,34 +293,28 @@ h1 {
   padding-left: 16px;
   border-left: 6px solid #4a90e2;
   line-height: 1.4;
-  
+
   /* ネオン追加 */
-  text-shadow: 
-    0 0 10px rgba(74, 144, 226, 0.4),
-    0 0 20px rgba(74, 144, 226, 0.3),
-    0 0 30px rgba(74, 144, 226, 0.2),
+  text-shadow: 0 0 10px rgba(74, 144, 226, 0.4),
+    0 0 20px rgba(74, 144, 226, 0.3), 0 0 30px rgba(74, 144, 226, 0.2),
     0 0 40px rgba(74, 144, 226, 0.1);
   animation: neonPulse 2s ease-in-out infinite alternate;
 }
 
 @keyframes neonPulse {
   from {
-    text-shadow: 
-      0 0 10px rgba(74, 144, 226, 0.4),
-      0 0 20px rgba(74, 144, 226, 0.3),
-      0 0 30px rgba(74, 144, 226, 0.2);
+    text-shadow: 0 0 10px rgba(74, 144, 226, 0.4),
+      0 0 20px rgba(74, 144, 226, 0.3), 0 0 30px rgba(74, 144, 226, 0.2);
   }
   to {
-    text-shadow: 
-      0 0 20px rgba(74, 144, 226, 0.5),
-      0 0 30px rgba(74, 144, 226, 0.4),
-      0 0 40px rgba(74, 144, 226, 0.3),
+    text-shadow: 0 0 20px rgba(74, 144, 226, 0.5),
+      0 0 30px rgba(74, 144, 226, 0.4), 0 0 40px rgba(74, 144, 226, 0.3),
       0 0 50px rgba(74, 144, 226, 0.2);
   }
 }
 
 h2 {
-  font-family: 'MakinasSquare', sans-serif;
+  font-family: "MakinasSquare", sans-serif;
   font-size: 22px;
   font-weight: 600;
   margin: 40px 0 24px 0; /* h1と同じリズム */
@@ -326,15 +324,13 @@ h2 {
 
 /* ===== 本文 ===== */
 p {
-  font-family: 'SmartFontUI', sans-serif;
+  font-family: "SmartFontUI", sans-serif;
   font-size: 15px;
   line-height: 1.8;
-  margin: 0 0 16px 0;  /* 段落の余白を統一 */
+  margin: 0 0 16px 0; /* 段落の余白を統一 */
   color: #cccccc;
   max-width: 720px; /* 横幅を制限すると読みやすい */
 }
-
-
 
 /* ===== クレジットテーブル ===== */
 .credit-table {
@@ -346,16 +342,21 @@ p {
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid rgba(74, 144, 226, 0.25);
   border-left: 2px solid #4a90e2;
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%);
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.3),
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 7px),
+    calc(100% - 7px) 100%,
+    0 100%
+  );
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
   position: relative;
   overflow: hidden;
 }
 
 .credit-table::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   right: 0;
@@ -399,26 +400,30 @@ p {
 @media (max-width: 768px) {
   .credit-table {
     margin: 12px 0 16px 0;
-    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%);
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% calc(100% - 5px),
+      calc(100% - 5px) 100%,
+      0 100%
+    );
   }
-  
+
   .credit-table::after {
     width: 5px;
     height: 5px;
   }
-  
+
   .credit-table td {
     padding: 10px 12px;
     font-size: 12px;
   }
-  
+
   .credit-table td:first-child {
     width: 40%;
     font-size: 11px;
   }
 }
-
-
 
 /* footer */
 footer {
@@ -428,7 +433,6 @@ footer {
   color: #999;
   background: #0a0a0a;
 }
-
 
 /* ===== 画像表示 ===== */
 .image-container {
@@ -447,11 +451,6 @@ footer {
   display: block;
 }
 
-
-
-
-
-
 /* ===== LINE公式バナー ===== */
 .line-banner {
   position: fixed;
@@ -459,7 +458,7 @@ footer {
   left: 0;
   right: 0;
   z-index: 800;
-  background: linear-gradient(135deg, #06C755 0%, #00B900 100%);
+  background: linear-gradient(135deg, #06c755 0%, #00b900 100%);
   backdrop-filter: blur(10px);
   box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.3);
   opacity: 0;
@@ -508,7 +507,7 @@ footer {
   flex-shrink: 0;
   padding: 10px 20px;
   background: #ffffff;
-  color: #06C755;
+  color: #06c755;
   font-size: 13px;
   font-weight: 700;
   text-decoration: none;
@@ -536,20 +535,20 @@ footer {
   .line-banner-content {
     padding: 14px 24px;
   }
-  
+
   .line-banner-label {
     font-size: 12px;
   }
-  
+
   .line-banner-message {
     font-size: 14px;
   }
-  
+
   .line-banner-btn {
     padding: 11px 24px;
     font-size: 14px;
   }
-  
+
   footer {
     padding: 24px 24px 80px;
   }
@@ -560,22 +559,17 @@ footer {
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
-  
+
   .line-banner-btn:active {
     transform: scale(0.98);
   }
 }
 
-
-
-
-
-
 /* ===== 動的背景エフェクト ===== */
 
 /* グリッド背景 */
 body::before {
-  content: '';
+  content: "";
   position: fixed;
   top: 0;
   left: 50%;
@@ -583,23 +577,25 @@ body::before {
   width: 100%;
   max-width: 450px;
   height: 100%;
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px
+    ),
     linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
   background-size: 40px 40px;
   background-position: 0 var(--scroll-y);
   pointer-events: none;
   z-index: -1;
-    /* グリッドをぼかす */
+  /* グリッドをぼかす */
   filter: blur(0.6px); /* 値を大きくするとさらにぼかせる */
-  
+
   /* 微かなグロー効果 */
   box-shadow: inset 0 0 100px rgba(74, 144, 226, 0.02);
 }
 
 /* 上部からの微かな発光 */
 body::after {
-  content: '';
+  content: "";
   position: fixed;
   top: 0;
   left: 50%;
@@ -619,7 +615,7 @@ body::after {
 }
 
 body::after {
-  content: '';
+  content: "";
   position: fixed;
   top: -50%;
   left: 50%;
@@ -627,15 +623,14 @@ body::after {
   width: 100%;
   max-width: 450px;
   height: 200%;
-  background: 
-    radial-gradient(
-      circle at 30% 40%, 
-      rgba(74, 144, 226, 0.06) 0%, 
+  background: radial-gradient(
+      circle at 30% 40%,
+      rgba(74, 144, 226, 0.06) 0%,
       transparent 40%
     ),
     radial-gradient(
-      circle at 70% 70%, 
-      rgba(74, 144, 226, 0.04) 0%, 
+      circle at 70% 70%,
+      rgba(74, 144, 226, 0.04) 0%,
       transparent 40%
     );
   animation: subtleMove 25s ease-in-out infinite;
@@ -644,7 +639,8 @@ body::after {
 }
 
 @keyframes subtleMove {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(-50%, 0);
   }
   50% {
@@ -657,16 +653,15 @@ body::after {
   body {
     position: relative;
   }
-  
+
   body::before {
-    background-image: 
-      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    background-image: linear-gradient(
+        rgba(255, 255, 255, 0.03) 1px,
+        transparent 1px
+      ),
       linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   }
 }
-
-
-
 
 /* ===== ターミナル（背景エフェクト） ===== */
 .terminal-background {
@@ -680,7 +675,7 @@ body::after {
   pointer-events: none;
   z-index: -1; /* 最背面 */
   overflow: hidden;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   font-size: 11px;
   line-height: 1.6;
   color: rgba(74, 144, 226, 0.16); /* 通常文字 */
@@ -697,7 +692,6 @@ body::after {
   overflow: hidden;
 }
 
-
 /* タイピング用カーソル */
 .terminal-cursor {
   display: inline-block;
@@ -709,21 +703,37 @@ body::after {
 }
 
 @keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes fadeInLine {
-  to { opacity: 1; }
+  to {
+    opacity: 1;
+  }
 }
 
 /* 出力・エラー・警告の色分け */
-.terminal-output { color: rgba(74, 144, 226, 0.3); }
-.terminal-error { color: rgba(186, 47, 47, 0.3); }
-.terminal-warning { color: rgba(167, 143, 55, 0.3); }
+.terminal-output {
+  color: rgba(74, 144, 226, 0.3);
+}
+.terminal-error {
+  color: rgba(186, 47, 47, 0.3);
+}
+.terminal-warning {
+  color: rgba(167, 143, 55, 0.3);
+}
 
 /* プログレスバー用 */
-.terminal-progress { color: rgba(74, 144, 226, 0.3); }
+.terminal-progress {
+  color: rgba(74, 144, 226, 0.3);
+}
 
 /* ===== メディアクエリで横幅を body に合わせる ===== */
 @media (min-width: 451px) {
@@ -741,9 +751,6 @@ body::after {
     transform: none;
   }
 }
-
-
-
 
 /* ===== Googleマップ（修正版） ===== */
 .map-container {
@@ -768,7 +775,7 @@ body::after {
   .map-container {
     padding: 0 8px;
   }
-  
+
   .map-container iframe {
     height: 450px;
   }
@@ -780,9 +787,7 @@ body::after {
   }
 }
 
-
 /* 横の黒帯の設定 */
-
 
 /* 横幅451px以上 */
 @media (min-width: 451px) {
@@ -794,7 +799,8 @@ body::after {
     overflow-x: hidden;
   }
 
-  header, .header {
+  header,
+  .header {
     width: 450px;
     left: 50%;
     transform: translateX(-50%);
@@ -811,7 +817,7 @@ body::after {
     width: 450px;
     left: calc(50% - 225px); /* body幅450pxの中央に合わせる */
     max-width: 100%;
-    background: linear-gradient(135deg, #06C755 0%, #00B900 100%);
+    background: linear-gradient(135deg, #06c755 0%, #00b900 100%);
     z-index: 800;
   }
 
@@ -832,7 +838,8 @@ body::after {
     margin: 0;
   }
 
-  header, .header {
+  header,
+  .header {
     width: 100%;
     left: 0;
     transform: none;

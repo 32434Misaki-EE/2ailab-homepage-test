@@ -6,13 +6,14 @@ async function loadHTML(id, file) {
     return false;
   }
   try {
-    const res = await fetch(file, { cache: 'no-cache' });
-    if (!res.ok) throw new Error(`${file} を取得できませんでした (${res.status})`);
+    const res = await fetch(file, { cache: "no-cache" });
+    if (!res.ok)
+      throw new Error(`${file} を取得できませんでした (${res.status})`);
     const text = await res.text();
     container.innerHTML = text;
     return true;
   } catch (err) {
-    console.error('loadHTML error:', err);
+    console.error("loadHTML error:", err);
     container.innerHTML = `<div style="color:#c00;padding:8px;">読み込みエラー: ${file}</div>`;
     return false;
   }
@@ -27,8 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!file) continue;
 
       try {
-        const response = await fetch(file, { cache: 'no-cache' });
-        if (!response.ok) throw new Error(`${file} を取得できません (${response.status})`);
+        const response = await fetch(file, { cache: "no-cache" });
+        if (!response.ok)
+          throw new Error(`${file} を取得できません (${response.status})`);
 
         const html = await response.text();
         el.innerHTML = html;
@@ -40,7 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
           script.defer = true;
           document.body.appendChild(script);
         }
-
       } catch (err) {
         console.error("loadPartials error:", err);
         el.innerHTML = "読み込みエラー";
