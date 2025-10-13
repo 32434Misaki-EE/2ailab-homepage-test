@@ -595,7 +595,7 @@ body::after {
   transform: translateX(-50%);
   width: 100%;
   max-width: 900px;
-  height: 100%;
+  height: 200%;
   pointer-events: none;
   z-index: -1; /* 最背面 */
   overflow: hidden;
