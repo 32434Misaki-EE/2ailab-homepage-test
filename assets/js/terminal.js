@@ -1,3 +1,42 @@
+// グリッド背景とターミナル背景のパララックス効果
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  
+  // グリッド背景用
+  document.body.style.setProperty('--scroll-y', `${scrollY * -0.3}px`);
+  
+  // ターミナル背景用
+  const terminalBg = document.querySelector('.terminal-background');
+  if (terminalBg) {
+    const isNarrow = window.innerWidth <= 450;
+    if (isNarrow) {
+      // 450px以下：左寄せなのでtranslateXは不要
+      terminalBg.style.transform = `translateY(${scrollY * -0.1}px)`;
+      terminalBg.style.left = '0';
+    } else {
+      // 451px以上：中央寄せ
+      terminalBg.style.transform = `translateX(-50%) translateY(${scrollY * -0.1}px)`;
+      terminalBg.style.left = '50%';
+    }
+  }
+});
+
+// リサイズ時にも再計算
+window.addEventListener('resize', () => {
+  const scrollY = window.scrollY;
+  const terminalBg = document.querySelector('.terminal-background');
+  if (terminalBg) {
+    const isNarrow = window.innerWidth <= 450;
+    if (isNarrow) {
+      terminalBg.style.transform = `translateY(${scrollY * -0.1}px)`;
+      terminalBg.style.left = '0';
+    } else {
+      terminalBg.style.transform = `translateX(-50%) translateY(${scrollY * -0.1}px)`;
+      terminalBg.style.left = '50%';
+    }
+  }
+});
+
 const terminal = document.getElementById('terminal');
 if (terminal) {
   const commands = [
@@ -49,19 +88,19 @@ if (terminal) {
   let currentCommandLineIndex = 0;
 
   const lineHeight = parseFloat(getComputedStyle(terminal).lineHeight) || 19;
-  function getMaxLines() {
-    return Math.floor(window.innerHeight / lineHeight);
-  }
 
   function createNewLine(className = 'terminal-line') {
     const line = document.createElement('div');
     line.className = className;
-    terminal.appendChild(line);
 
-    const maxLines = getMaxLines();
-    while (terminal.children.length > maxLines) {
-      terminal.removeChild(terminal.firstChild);
-    }
+    // 既存の行を下に押し下げ
+    Array.from(terminal.children).forEach(child => {
+      const currentY = parseFloat(child.style.transform.replace('translateY(', '') || 0);
+      child.style.transform = `translateY(${currentY + lineHeight}px)`;
+    });
+
+    // 新しい行は上に追加
+    terminal.prepend(line);
 
     return line;
   }
@@ -97,7 +136,7 @@ if (terminal) {
       if (charIndex < lineText.length) {
         currentLine.textContent += lineText[charIndex];
         charIndex++;
-        setTimeout(typeLine, Math.random() * 40 + 2);
+        setTimeout(typeLine, Math.random() * 20 + 2);
       } else if (currentCommandLineIndex < currentCommandLines.length - 1) {
         currentCommandLineIndex++;
         charIndex = 0;
@@ -106,7 +145,7 @@ if (terminal) {
         setTimeout(typeLine, 50);
       } else {
         isTyping = false;
-        setTimeout(typeCommand, Math.random() * 1000 + 10);
+        setTimeout(typeCommand, Math.random() * 500 + 100);
       }
     }
 
@@ -123,7 +162,6 @@ if (terminal) {
     let step = 0;
 
     const barLength = 20;
-
     const designs = [
       (s, total) => {
         const filled = Math.round((s / total) * barLength);
@@ -135,7 +173,7 @@ if (terminal) {
       (s, total) => {
         const filled = Math.round((s / total) * barLength);
         const percent = Math.round((s / total) * 100);
-        const done = '░'.repeat(filled);
+        const done = '█'.repeat(filled);
         const remaining = '-'.repeat(barLength - filled);
         return `Downloading file_${Math.floor(Math.random()*100)}.zip [${done}${remaining}] ${percent}% ${(Math.random()*2+0.5).toFixed(1)}MB/s ETA: 00:01:10`;
       },
@@ -156,7 +194,7 @@ if (terminal) {
       progressLine.textContent = designFunc(step, steps);
 
       if (step < steps) {
-        setTimeout(stepProgress, duration / steps);
+        setTimeout(stepProgress, (duration / steps)*0.8);
       } else {
         setTimeout(typeCommand, 500);
       }
@@ -164,13 +202,6 @@ if (terminal) {
 
     stepProgress();
   }
-
-  function scrollToBottom() {
-    terminal.scrollTop = terminal.scrollHeight;
-  }
-
-  window.addEventListener('resize', scrollToBottom);
-  setInterval(scrollToBottom, 100);
 
   setTimeout(typeCommand, 800);
 }
