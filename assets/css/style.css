@@ -696,6 +696,41 @@ body::after {
   }
 }
 
+/* ===== Googleマップ（修正版） ===== */
+.instagram-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 16px;
+  box-sizing: border-box; /* 追加 */
+}
+
+.instagram-container iframe {
+  width: 100%;
+  max-width: 100%; /* 追加 */
+  height: 400px;
+  border: 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: block; /* 追加 */
+}
+
+@media (min-width: 420px) {
+  .instagram-container {
+    padding: 0 8px;
+  }
+
+  .instagram-container iframe {
+    height: 450px;
+  }
+}
+
+@media (min-width: 768px) {
+  .instagram-container iframe {
+    height: 500px;
+  }
+}
+
 /* 横の黒帯の設定 */
 
 /* 横幅451px以上 */
